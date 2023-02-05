@@ -31,11 +31,11 @@ namespace AddressBook
             contact.Phone = Console.ReadLine();
             Console.WriteLine("Enter your email ");
             contact.Email = Console.ReadLine();
-           contacts.Add(contact);   
+            contacts.Add(contact);
             return contact;
         }
 
-        public void View() 
+        public void View()
         {
 
             if (contacts.Count <= 0)
@@ -59,7 +59,47 @@ namespace AddressBook
 
                 }
 
-        }   }
 
+            }
+        }
+
+
+        public void Edit()
+        {
+
+            Console.WriteLine("enter name in which u want to do edit");
+            string n = Console.ReadLine();
+            Contact contact = null;
+
+            foreach (var item in contacts)
+            {
+
+                if (item.FirstName == n)
+                {
+                    contact = item;
+                }
+
+                if (contact == null)
+                {
+                    Console.WriteLine("this contact is not available ");
+
+
+                }
+                contact = AddContact();
+
+                for (int i = 0; i < contacts.Count; i++)
+                {
+                    if (contacts[i].FirstName == n)
+                    {
+
+                        contacts.RemoveAt(i);
+                        contact = contacts[i];
+                        Console.WriteLine("Contact edited");
+                    }
+                    return;
+                }
+
+            }
+        }
     }
 }
