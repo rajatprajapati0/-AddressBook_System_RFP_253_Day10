@@ -8,7 +8,24 @@ namespace AddressBook
         {
             Console.WriteLine("Welcome to Address Book");
             AddressBook obj= new AddressBook();
-            Console.WriteLine(obj.AddContact());    
+            while (true)
+            {
+                Console.WriteLine("select an option\na - add a new contact\nb -view all contacts");
+                string input = Console.ReadLine();
+                char option = input[0];
+                switch (option)
+                {
+                    case 'a':
+                        obj.AddContact();
+                        break;
+                    case 'b':
+                        obj.View();
+                        break;
+                    default:
+                        Console.WriteLine("select right option");
+                        break;
+                }
+            }
         }
     }
 }

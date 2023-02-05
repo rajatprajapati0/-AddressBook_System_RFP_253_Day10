@@ -6,6 +6,12 @@ namespace AddressBook
 {
     public class AddressBook
     {
+        List<Contact> contacts;
+        public AddressBook()
+        {
+            contacts = new List<Contact>();
+        }
+
         public Contact AddContact()
         {
             Contact contact = new Contact();
@@ -25,9 +31,35 @@ namespace AddressBook
             contact.Phone = Console.ReadLine();
             Console.WriteLine("Enter your email ");
             contact.Email = Console.ReadLine();
-          
+           contacts.Add(contact);   
             return contact;
         }
+
+        public void View() 
+        {
+
+            if (contacts.Count <= 0)
+            {
+                Console.WriteLine("No contacts available");
+            }
+            else
+            {
+                foreach (var contact in contacts)
+                {
+                    Console.WriteLine
+                   (@$"
+                      Name: {contact.FirstName} {contact.LastName}
+                      Address: {contact.Address} 
+                      City: {contact.City}
+                      State: {contact.State}
+                      Zipcode: {contact.zipcode}
+                      PhoneNumber:{contact.Phone}
+                      Email: {contact.Email}
+                  ");
+
+                }
+
+        }   }
 
     }
 }
