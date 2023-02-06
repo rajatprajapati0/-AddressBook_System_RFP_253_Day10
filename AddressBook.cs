@@ -73,5 +73,40 @@ namespace AddressBook
         {
             Console.WriteLine(person.ToString());
         }
+
+        public void Delet()
+        {
+            Console.WriteLine("enter name which you want to delet");
+            string name = Console.ReadLine();
+            Contact contact = null;
+            foreach (var item in person.contacts)
+            {
+
+                if (item.FirstName.Equals(name))
+                {
+
+                    contact = item;
+
+                }
+            }
+            if (contact != null)
+            {
+
+                
+                for (int i = 0; i < person.contacts.Count; i++)
+                {
+                    if (person.contacts[i].FirstName.Equals(name))
+                    {
+                        person.contacts.RemoveAt(i);
+                  
+                        Console.WriteLine("Deleted");
+                    }
+                }
+            }
+            else { Console.WriteLine("contact is not present "); }
+
+
+        }
+
     }
 }

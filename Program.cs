@@ -11,7 +11,7 @@ namespace AddressBook
             bool close= true;
             while (close)
             {
-                Console.WriteLine("select an option\na - add a new contact\nb -view all contacts\nc -edit contact\nd -close");
+                Console.WriteLine("select an option\na - add a new contact\nb -view all contacts\nc -edit contact\nd -close\ne -delet");
                 string input = Console.ReadLine();
                 char option = input[0];
                 
@@ -29,6 +29,9 @@ namespace AddressBook
                     case 'd':
                               Console.WriteLine("Thank you");
                               close= false; 
+                        break;
+                    case 'e':
+                              obj.Delet();
                         break;
                     default:
                              Console.WriteLine("select right option");
