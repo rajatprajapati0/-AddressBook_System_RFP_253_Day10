@@ -6,12 +6,46 @@ namespace AddressBook
 {
     public class AddressBook
     {
-        List<Contact> contacts;
+        public Person person;
         public AddressBook()
         {
-            contacts = new List<Contact>();
+            person = new Person();
+
         }
 
+        public void Edit()
+        {
+            Console.WriteLine("enter name in which you want edit");
+            string name=Console.ReadLine();
+            Contact contact = null;
+            foreach( var item in person.contacts)
+             {
+
+                if (item.FirstName.Equals( name)) 
+                {
+                
+                 contact= item ;
+                    
+                }
+            }
+            if (contact  != null)
+            {
+
+                   contact = AddContact();
+                for (int i = 0; i < person.contacts.Count; i++)
+                {
+                    if (person.contacts[i].FirstName.Equals(name))
+                    {
+                        person.contacts.RemoveAt(i);
+                        person.contacts[i] = contact;
+                        Console.WriteLine("edited");
+                    }
+                }
+            }
+            else { Console.WriteLine("contact is not present "); }
+
+
+        }
         public Contact AddContact()
         {
             Contact contact = new Contact();
@@ -31,75 +65,13 @@ namespace AddressBook
             contact.Phone = Console.ReadLine();
             Console.WriteLine("Enter your email ");
             contact.Email = Console.ReadLine();
-            contacts.Add(contact);
+            person.contacts.Add(contact);
             return contact;
         }
 
         public void View()
         {
-
-            if (contacts.Count <= 0)
-            {
-                Console.WriteLine("No contacts available");
-            }
-            else
-            {
-                foreach (var contact in contacts)
-                {
-                    Console.WriteLine
-                   (@$"
-                      Name: {contact.FirstName} {contact.LastName}
-                      Address: {contact.Address} 
-                      City: {contact.City}
-                      State: {contact.State}
-                      Zipcode: {contact.zipcode}
-                      PhoneNumber:{contact.Phone}
-                      Email: {contact.Email}
-                  ");
-
-                }
-
-
-            }
-        }
-
-
-        public void Edit()
-        {
-
-            Console.WriteLine("enter name in which u want to do edit");
-            string n = Console.ReadLine();
-            Contact contact = null;
-
-            foreach (var item in contacts)
-            {
-
-                if (item.FirstName == n)
-                {
-                    contact = item;
-                }
-
-                if (contact == null)
-                {
-                    Console.WriteLine("this contact is not available ");
-
-
-                }
-                contact = AddContact();
-
-                for (int i = 0; i < contacts.Count; i++)
-                {
-                    if (contacts[i].FirstName == n)
-                    {
-
-                        contacts.RemoveAt(i);
-                        contact = contacts[i];
-                        Console.WriteLine("Contact edited");
-                    }
-                    return;
-                }
-
-            }
+            Console.WriteLine(person.ToString());
         }
     }
 }
